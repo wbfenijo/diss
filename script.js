@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let secret = "";
     let SOLUTIONS = [];
     let VALID = [];
+    let invalidTimeout = null;
+
+
 
     const grid = document.getElementById("grid");
     const keyboard = document.getElementById("keyboard");
@@ -78,33 +81,68 @@ document.addEventListener("DOMContentLoaded", () => {
     restartBtn.addEventListener("click", restartGame);
 
     function checkWord() {
+        if (messageDiv.style.display === "block") {
+            messageDiv.style.display = "none";
+            if (invalidTimeout) {
+                clearTimeout(invalidTimeout);
+                invalidTimeout = null;
+            }
+        }
+
         if (currentCol !== COLS) return;
 
         const guess = board[currentRow].join("");
         if (!VALID.includes(guess)) {
             messageDiv.textContent = "Neplatné slovo!";
             messageDiv.style.display = "block";
+
+            if (invalidTimeout) clearTimeout(invalidTimeout);
+            invalidTimeout = setTimeout(() => {
+                messageDiv.style.display = "none";
+                invalidTimeout = null;
+            }, 2000);
             return;
         }
 
+        // pripravíme kópiu secret slova pre kontrolu prítomných písmen
+        let secretArr = secret.split("");
+        let guessArr = guess.split("");
+
+        // najprv označíme správne pozície
+        let letterStatus = Array(COLS).fill("absent");
         for (let i = 0; i < COLS; i++) {
-            const cell = grid.children[currentRow].children[i];
-            if (guess[i] === secret[i]) {
-                cell.classList.add("correct");
-            } else if (secret.includes(guess[i])) {
-                cell.classList.add("present");
-            } else {
-                cell.classList.add("absent");
+            if (guessArr[i] === secretArr[i]) {
+                letterStatus[i] = "correct";
+                secretArr[i] = null; // už použitý
             }
         }
+
+        // potom označíme prítomné písmená
+        for (let i = 0; i < COLS; i++) {
+            if (letterStatus[i] === "correct") continue;
+            let idx = secretArr.indexOf(guessArr[i]);
+            if (idx !== -1) {
+                letterStatus[i] = "present";
+                secretArr[idx] = null; // už použitý
+            }
+        }
+
+        // aktualizujeme bunky
+        for (let i = 0; i < COLS; i++) {
+            const cell = grid.children[currentRow].children[i];
+            cell.className = "cell"; // reset farieb
+            if (letterStatus[i] !== "absent") {
+                cell.classList.add(letterStatus[i]);
+            }
+        }
+
+        currentRow++;
+        currentCol = 0;
 
         if (guess === secret) {
             endGame(true);
             return;
         }
-
-        currentRow++;
-        currentCol = 0;
 
         if (currentRow === ROWS) {
             endGame(false);
