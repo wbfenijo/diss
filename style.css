@@ -101,25 +101,13 @@ h1 {
 
 @media (max-width: 600px) {
   #grid {
-    grid-template-rows: repeat(6, 45px);
+    grid-template-rows: repeat(6, 30px);
     width: 260px;
     gap: 4px;
   }
 
   .row {
-    grid-template-columns: repeat(5, 45px);
+    grid-template-columns: repeat(5, 30px);
     gap: 4px;
-  }
-
-  .cell {
-    width: 15px;
-    height: 15px;
-    font-size: 1.5rem;
-  }
-
-  .key {
-    padding: 8px 10px;
-    font-size: 12px;
-    margin: 2px;
   }
 }

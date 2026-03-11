@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 key.addEventListener("click", () => handleKey(k));
 
-                keyElements[k] = key; // ← toto je nove
+                keyElements[k] = key; 
 
                 rowDiv.appendChild(key);
             }
