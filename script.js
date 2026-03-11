@@ -104,36 +104,30 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // pripravíme kópiu secret slova pre kontrolu prítomných písmen
         let secretArr = secret.split("");
         let guessArr = guess.split("");
 
-        // najprv označíme správne pozície
         let letterStatus = Array(COLS).fill("absent");
         for (let i = 0; i < COLS; i++) {
             if (guessArr[i] === secretArr[i]) {
                 letterStatus[i] = "correct";
-                secretArr[i] = null; // už použitý
+                secretArr[i] = null; 
             }
         }
 
-        // potom označíme prítomné písmená
         for (let i = 0; i < COLS; i++) {
             if (letterStatus[i] === "correct") continue;
             let idx = secretArr.indexOf(guessArr[i]);
             if (idx !== -1) {
                 letterStatus[i] = "present";
-                secretArr[idx] = null; // už použitý
+                secretArr[idx] = null; 
             }
         }
 
-        // aktualizujeme bunky
         for (let i = 0; i < COLS; i++) {
             const cell = grid.children[currentRow].children[i];
-            cell.className = "cell"; // reset farieb
-            if (letterStatus[i] !== "absent") {
-                cell.classList.add(letterStatus[i]);
-            }
+            cell.className = "cell"; 
+            cell.classList.add(letterStatus[i]);
         }
 
         currentRow++;
