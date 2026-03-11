@@ -34,13 +34,13 @@ h1 {
 }
 
 .correct {
-  background-color: #6aaa64; /* zelena */
+  background-color: #6aaa64;
   color: #fff;
   border: none;
 }
 
 .present {
-  background-color: #c9b458; /* zlta */
+  background-color: #c9b458;
   color: #fff;
   border: none;
 }
