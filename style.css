@@ -100,23 +100,26 @@ h1 {
 }
 
 @media (max-width: 600px) {
+  #grid {
+    grid-template-rows: repeat(6, 45px);
+    width: 260px;
+    gap: 4px;
+  }
+
+  .row {
+    grid-template-columns: repeat(5, 45px);
+    gap: 4px;
+  }
+
   .cell {
     width: 45px;
     height: 45px;
-    font-size: 22px;
+    font-size: 1.5rem;
   }
 
   .key {
-    width: 30px;
-    height: 45px;
-    font-size: 14px;
-  }
-
-  .keyboard-row {
-    gap: 3px;
-  }
-
-  #grid {
-    gap: 4px;
+    padding: 8px 10px;
+    font-size: 12px;
+    margin: 2px;
   }
 }
