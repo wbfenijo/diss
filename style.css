@@ -67,6 +67,21 @@ h1 {
   text-transform: uppercase;
 }
 
+.key.correct {
+  background-color: #6aaa64;
+  color: white;
+}
+
+.key.present {
+  background-color: #c9b458;
+  color: white;
+}
+
+.key.absent {
+  background-color: #787c7e;
+  color: white;
+}
+
 #message {
   font-size: 1.5rem;
   margin: 10px 0;
@@ -82,4 +97,26 @@ h1 {
   color: #fff;
   border: none;
   border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  .cell {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
+
+  .key {
+    width: 30px;
+    height: 45px;
+    font-size: 14px;
+  }
+
+  .keyboard-row {
+    gap: 3px;
+  }
+
+  #grid {
+    gap: 4px;
+  }
 }

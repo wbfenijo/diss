@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let SOLUTIONS = [];
     let VALID = [];
     let invalidTimeout = null;
-
+    let keyElements = {};
 
 
     const grid = document.getElementById("grid");
@@ -125,9 +125,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         for (let i = 0; i < COLS; i++) {
+
+            const letter = guess[i];
             const cell = grid.children[currentRow].children[i];
-            cell.className = "cell"; 
-            cell.classList.add(letterStatus[i]);
+            const key = keyElements[letter];
+
+            cell.className = "cell";
+
+            if (letterStatus[i] === "correct") {
+                cell.classList.add("correct");
+
+                if (key) {
+                    key.classList.remove("present");
+                    key.classList.add("correct");
+                }
+            }
+
+            else if (letterStatus[i] === "present") {
+                cell.classList.add("present");
+
+                if (key && !key.classList.contains("correct")) {
+                    key.classList.add("present");
+                }
+            }
+
+            else {
+                if (key &&
+                    !key.classList.contains("correct") &&
+                    !key.classList.contains("present")) {
+                    key.classList.add("absent");
+                }
+            }
         }
 
         currentRow++;
@@ -148,18 +176,25 @@ document.addEventListener("DOMContentLoaded", () => {
         rows.forEach(r => {
             const rowDiv = document.createElement("div");
             rowDiv.className = "keyboard-row";
+
             for (const k of r) {
                 const key = document.createElement("div");
                 key.className = "key";
                 key.textContent = k;
+
                 key.addEventListener("click", () => handleKey(k));
+
+                keyElements[k] = key; // ← toto je nove
+
                 rowDiv.appendChild(key);
             }
+
             keyboard.appendChild(rowDiv);
         });
 
-        const special = document.createElement("div");
+    const special = document.createElement("div");
         special.className = "keyboard-row";
+
         ["enter", "backspace"].forEach(k => {
             const key = document.createElement("div");
             key.className = "key";
@@ -167,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
             key.addEventListener("click", () => handleKey(k));
             special.appendChild(key);
         });
+
         keyboard.appendChild(special);
     }
 
