@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (key) {
                     key.classList.remove("present");
+                    key.classList.remove("absent");
                     key.classList.add("correct");
                 }
             }
@@ -242,3 +243,5 @@ document.addEventListener("DOMContentLoaded", () => {
     updateGrid();
 
 });
+//python -m http.server 8000
+//http://localhost:8000/

@@ -46,7 +46,7 @@ h1 {
 }
 
 .absent {
-  background-color: #9f9f9f;
+  background-color: #ffffff;
   color: #fff;
   border: none;
 }
@@ -78,8 +78,8 @@ h1 {
 }
 
 .key.absent {
-  background-color: #787c7e;
-  color: white;
+  background-color: #000000;
+  color: rgb(170, 170, 170);
 }
 
 #message {
@@ -101,18 +101,22 @@ h1 {
 
 @media (max-width: 600px) {
   #grid {
-    grid-template-rows: repeat(6, 30px);
-    width: 180px;
+    grid-template-rows: repeat(6, 35px);
+    width: 190px;
     gap: 4px;
   }
 
   .row {
-    grid-template-columns: repeat(5, 30px);
+    grid-template-columns: repeat(5, 35px);
     gap: 4px;
   }
 
   .key {
     margin: 3px;
-    padding: 2px 6px;
+    padding: 3px 7px;
+  }
+
+  .cell {
+    font-size: 1rem;
   }
 }
