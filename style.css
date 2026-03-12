@@ -101,19 +101,19 @@ h1 {
 
 @media (max-width: 600px) {
   #grid {
-    grid-template-rows: repeat(6, 35px);
+    grid-template-rows: repeat(6, 40px);
     width: 190px;
     gap: 4px;
   }
 
   .row {
-    grid-template-columns: repeat(5, 35px);
+    grid-template-columns: repeat(5, 40px);
     gap: 4px;
   }
 
   .key {
     margin: 3px;
-    padding: 3px 7px;
+    padding: 4px 8px;
   }
 
   .cell {
