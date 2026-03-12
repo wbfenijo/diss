@@ -155,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     !key.classList.contains("correct") &&
                     !key.classList.contains("present")) {
                     key.classList.add("absent");
+                    cell.classList.add("absent")
                 }
             }
         }
