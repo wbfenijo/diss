@@ -130,8 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const cell = grid.children[currentRow].children[i];
             const key = keyElements[letter];
 
-            cell.className = "cell";
-            cell.classList.add("absent");
+
+
 
             if (letterStatus[i] === "correct") {
                 cell.classList.add("correct");
