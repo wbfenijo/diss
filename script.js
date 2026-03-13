@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadWords() {
         SOLUTIONS = await fetch("solutions.json").then(res => res.json());
         VALID = await fetch("valid_guesses.json").then(res => res.json());
-        secret = "motyl"//SOLUTIONS[Math.floor(Math.random() * SOLUTIONS.length)];
+        secret = SOLUTIONS[Math.floor(Math.random() * SOLUTIONS.length)];
         console.log("Secret word:", secret);
     }
 
