@@ -131,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const key = keyElements[letter];
 
             cell.className = "cell";
+            cell.classList.add("absent");
 
             if (letterStatus[i] === "correct") {
                 cell.classList.add("correct");
