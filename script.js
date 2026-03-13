@@ -152,12 +152,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             else {
+                if (letterStatus[i] === "absent"){
+                    cell.classList.add("absent")
+                
                 if (key &&
                     !key.classList.contains("correct") &&
-                    !key.classList.contains("present")) {
+                    !key.classList.contains("present")
+                    ) {
                     key.classList.add("absent");
-                    cell.classList.add("absent")
+                    
                 }
+            }
             }
         }
 
@@ -236,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadWords() {
         SOLUTIONS = await fetch("solutions.json").then(res => res.json());
         VALID = await fetch("valid_guesses.json").then(res => res.json());
-        secret = SOLUTIONS[Math.floor(Math.random() * SOLUTIONS.length)];
+        secret = "motyl"//SOLUTIONS[Math.floor(Math.random() * SOLUTIONS.length)];
         console.log("Secret word:", secret);
     }
 
